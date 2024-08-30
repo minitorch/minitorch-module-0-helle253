@@ -120,11 +120,14 @@ def test_sigmoid(a: float) -> None:
     else:
         assert(sigmoid(a) >= 0.5)
     # * It is strictly increasing.
-    # this appears to be where python's precision limit is reached
-
-    if a < 37:
-        assert( sigmoid(a - 1.0) < sigmoid(a))
-        assert(sigmoid(a) < sigmoid(a + 1.0))
+    s1 = sigmoid(a - 1.0)
+    s2 = sigmoid(a)
+    s3 = sigmoid(a + 1.0)
+    # above ~36, sigmoid rounds to 1.0, so we can't compare it to 1.0
+    if s1 < 1.0:
+        assert(s1 < s2)
+    if s2 < 1.0:
+        assert(s2 < s3)
 
 
 @pytest.mark.task0_2

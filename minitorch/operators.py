@@ -90,7 +90,7 @@ def log_back(x: float, y: float) -> float:
   return y / x
 
 def inv_back(x: float, y: float) -> float:
-  raise y / x ** 2
+  return y / x ** 2
 
 def relu_back(x: float, y: float) -> float:
   if x > 0:

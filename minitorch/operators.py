@@ -78,7 +78,7 @@ def log(x: float) -> float:
     return math.log(x, math.e)
 
 def exp(x: float) -> float:
-    return math.e * x
+    return math.e ** x
 
 def inv(x: float) -> float:
     return 1.0 / x

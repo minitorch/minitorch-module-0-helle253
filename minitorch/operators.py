@@ -3,6 +3,7 @@ Collection of the core mathematical operators used throughout the code base.
 """
 
 import math
+from functools import reduce
 
 # ## Task 0.1
 from typing import Callable, Iterable
@@ -116,12 +117,14 @@ def relu_back(x: float, y: float) -> float:
 
 # TODO: Implement for Task 0.3.
 
-def negList():
-  raise Exception('NOT IMPLEMENTED')
+def negList(l: Iterable[float]) -> Iterable[float]:
+  return map(lambda x: neg(x), l)
 
-def addLists():
-  raise Exception('NOT IMPLEMENTED')
-def sum():
-  raise Exception('NOT IMPLEMENTED')
-def prod():
-  raise Exception('NOT IMPLEMENTED')
+def addLists(l: Iterable[float], r: Iterable[float]) -> Iterable[float]:
+  return map(lambda x, y: add(x, y), l, r)
+
+def sum(l: Iterable[float]) -> float:
+  return reduce(lambda x, y: add(x, y), l, 0)
+
+def prod(l: Iterable[float]) -> float:
+  return reduce(lambda x, y: mul(x, y), l, 1)

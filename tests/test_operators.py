@@ -22,6 +22,7 @@ from minitorch.operators import (
     relu,
     relu_back,
     sigmoid,
+    sum as mt_sum,
 )
 
 from .strategies import assert_close, small_floats
@@ -187,13 +188,13 @@ def test_sum_distribute(ls1: List[float], ls2: List[float]) -> None:
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    assert_close(sum(ls1) + sum(ls2), sum(ls1 + ls2))
 
 
 @pytest.mark.task0_3
 @given(lists(small_floats))
 def test_sum(ls: List[float]) -> None:
-    assert_close(sum(ls), minitorch.operators.sum(ls))
+    assert_close(sum(ls), mt_sum(ls))
 
 
 @pytest.mark.task0_3

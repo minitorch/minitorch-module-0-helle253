@@ -64,8 +64,11 @@ def is_close(x: float, y: float) -> float:
   return abs(x - y) < 1e-2
 
 # $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$ if x >=0 else $\frac{e^x}{(1.0 + e^{x})}$
-def sigmoid(x: float, y: float) -> float:
-  raise Exception('NOT IMPLEMENTED')
+def sigmoid(x: float) -> float:
+  if x >= 0:
+    return 1.0 / (1.0 + math.e ** -x)
+  else:
+    return (math.e ** x) / (1.0 + math.e ** x)
 
 def relu(x: float) -> float:
   if x > 0:

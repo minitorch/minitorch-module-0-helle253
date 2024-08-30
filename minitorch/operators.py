@@ -69,10 +69,7 @@ def sigmoid(x: float) -> float:
         return (math.e ** x) / (1.0 + math.e ** x)
 
 def relu(x: float) -> float:
-    if x > 0:
-        return x
-    else:
-      return 0
+    return x if x > 0 else 0
 
 def log(x: float) -> float:
     return math.log(x, math.e)

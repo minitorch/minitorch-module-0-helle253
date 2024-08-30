@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional, Sequence, Tuple
 
+from functools import reduce
+
 
 class Module:
     """
@@ -32,12 +34,16 @@ class Module:
     def train(self) -> None:
         "Set the mode of this module and all descendent modules to `train`."
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        self.training = True
+        for module in self.modules():
+            module.train()
 
     def eval(self) -> None:
         "Set the mode of this module and all descendent modules to `eval`."
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        self.training = False
+        for module in self.modules():
+            module.eval()
 
     def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
         """
@@ -47,13 +53,20 @@ class Module:
         Returns:
             The name and `Parameter` of each ancestor parameter.
         """
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        parameters = list(self._parameters.items())
+
+        for module in self._modules.items():
+            child_parameters = module[1].named_parameters()
+            for parameter in child_parameters:
+                parameters.append((f"{module[0]}.{parameter[0]}", parameter[1]))
+        return parameters
 
     def parameters(self) -> Sequence[Parameter]:
         "Enumerate over all the parameters of this module and its descendents."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        module_parameters = map(lambda x: x.parameters(), self.modules())
+        parameters = list(self._parameters.values())
+
+        return parameters + reduce(lambda x, y: y + x, module_parameters, [])
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
         """

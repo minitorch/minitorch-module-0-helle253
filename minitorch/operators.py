@@ -113,10 +113,6 @@ def relu_back(x: float, y: float) -> float:
 # - sum: sum lists
 # - prod: take the product of lists
 
-
-
-# TODO: Implement for Task 0.3.
-
 def negList(l: Iterable[float]) -> Iterable[float]:
   return map(lambda x: neg(x), l)
 

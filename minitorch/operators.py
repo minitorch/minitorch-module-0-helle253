@@ -48,17 +48,14 @@ def add(x: float, y: float) -> float:
 def neg(x: float) -> float:
   return -1 * x
 
-def lt(x: float, y: float) -> bool:
-  return x < y
+def lt(x: float, y: float) -> float:
+  return 1.0 if x < y else 0.0
 
-def eq(x: float, y: float) -> bool:
-  return x == y
+def eq(x: float, y: float) -> float:
+  return 1.0 if x == y else 0.0
 
 def max(x: float, y: float) -> float:
-  if x > y:
-      return x
-  else:
-    return y
+  return x if x > y else y
 
 # $f(x) = |x - y| < 1e-2$q
 def is_close(x: float, y: float) -> float:
